@@ -63,9 +63,12 @@ fn main()
 
 		"#version 410
 		 in vec3 vColor;
+
+		 out vec4 fragColor;
+
 		 void main()
 		 {
-		 	gl_FragColor = vec4(vColor, 1.0);
+		 	fragColor = vec4(vColor, 1.0);
 		 }", None).unwrap();
 
 	'main: loop
@@ -86,7 +89,7 @@ fn main()
 		target.draw(&vertex_buffer, &index_buffer, &program, &uniforms, &std::default::Default::default());
 		target.finish();
 
-		for event in display.poll_events().into_iter()
+		for event in display.poll_events()
 		{
 			match event
 			{
