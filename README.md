@@ -1,2 +1,2 @@
 # SweetEngine
-A Game Engine in Rust!
+A Game Engine in Rust

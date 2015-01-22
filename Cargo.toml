@@ -1,0 +1,14 @@
+[package]
+
+name = "SweetEngine"
+version = "0.0.1-pre"
+authors = ["Infinite"]
+
+[dependencies.glutin]
+git = "https://github.com/tomaka/glutin"
+
+[dependencies.glium]
+git = "https://github.com/tomaka/glium"
+
+[dependencies.glium_macros]
+git = "https://github.com/tomaka/glium"
