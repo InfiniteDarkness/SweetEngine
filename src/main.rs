@@ -6,14 +6,34 @@
 //	Licensed under the terms of the Apache License, v2
 //
 
+//----------------------------------------------------------------
+
+//	Feature gates
 #![feature(plugin)]
-#[plugin]
-extern crate glium_macros;
-#[macro_use]
-extern crate glium;
+#![feature(core)]
+
+//	Imports
+#[plugin] extern crate glium_macros;
+#[macro_use] extern crate glium;
 extern crate glutin;
 
+//	Global namespace pollution ;P
+use std::old_io::timer;
+use std::time::Duration;
 use glium::{DisplayBuild, Surface};
+
+//----------------------------------------------------------------
+
+//	Our vertex struct
+#[vertex_format]
+#[derive(Copy)]
+struct Vertex
+{
+	position: [f32; 2],
+	color: [f32; 3],
+}
+
+//----------------------------------------------------------------
 
 fn main()
 {
@@ -25,14 +45,6 @@ fn main()
 		.build_glium().unwrap();
 
 	let vertex_buffer = {
-		#[vertex_format]
-		#[derive(Copy)]
-		struct Vertex
-		{
-			position: [f32; 2],
-			color: [f32; 3],
-		}
-
 		glium::VertexBuffer::new(&display, 
 			vec!
 			[
@@ -89,13 +101,17 @@ fn main()
 		target.draw(&vertex_buffer, &index_buffer, &program, &uniforms, &std::default::Default::default());
 		target.finish();
 
-		for event in display.poll_events()
-		{
-			match event
-			{
-				glutin::Event::Closed => break 'main,
-				_ => ()
-			}
-		}
+        timer::sleep(Duration::milliseconds(10));
+
+        for event in display.poll_events()
+        {
+            match event
+            {
+                glutin::Event::Closed => break 'main,
+                _ => ()
+            }
+        }
 	}
 }
+
+//----------------------------------------------------------------
