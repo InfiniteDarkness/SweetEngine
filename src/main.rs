@@ -101,16 +101,16 @@ fn main()
 		target.draw(&vertex_buffer, &index_buffer, &program, &uniforms, &std::default::Default::default());
 		target.finish();
 
-        timer::sleep(Duration::milliseconds(10));
+		timer::sleep(Duration::milliseconds(10));
 
-        for event in display.poll_events()
-        {
-            match event
-            {
-                glutin::Event::Closed => break 'main,
-                _ => ()
-            }
-        }
+		for event in display.poll_events()
+		{
+			match event
+			{
+				glutin::Event::Closed => break 'main,
+				_ => ()
+			}
+		}
 	}
 }
 
