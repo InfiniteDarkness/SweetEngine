@@ -9,8 +9,10 @@
 //----------------------------------------------------------------
 
 //	Feature gates
+#![feature(std_misc)]
 #![feature(plugin)]
 #![feature(core)]
+#![feature(io)]
 
 //	Imports
 #[plugin] extern crate glium_macros;
@@ -98,7 +100,8 @@ fn main()
 
 		let mut target = display.draw();
 		target.clear_color(0.0, 0.0, 0.0, 0.0);
-		target.draw(&vertex_buffer, &index_buffer, &program, &uniforms, &std::default::Default::default());
+		target.draw(&vertex_buffer, &index_buffer, &program, &uniforms,
+			&std::default::Default::default());
 		target.finish();
 
 		timer::sleep(Duration::milliseconds(10));
@@ -107,9 +110,10 @@ fn main()
 		{
 			match event
 			{
-				glutin::Event::Closed => break 'main,
+				glutin::Event::KeyboardInput(_, _, 
+					Some(glutin::VirtualKeyCode::Q)) => break 'main,
 				_ => ()
-			}
+			}	
 		}
 	}
 }
