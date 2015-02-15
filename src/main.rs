@@ -9,13 +9,10 @@
 //----------------------------------------------------------------
 
 //	Feature gates
-#![feature(std_misc)]
-#![feature(plugin)]
-#![feature(core)]
-#![feature(io)]
+#![feature(std_misc, plugin, io)]
 
 //	Imports
-#[plugin] extern crate glium_macros;
+#![plugin(glium_macros)]
 #[macro_use] extern crate glium;
 extern crate glutin;
 
