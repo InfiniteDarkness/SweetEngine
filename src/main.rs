@@ -13,5 +13,5 @@ use self::scripting::*;
 fn main()
 {
 	execute_script("(lol -0.5)".to_string());
-    println!("Hello, world!");
+	println!("Hello, world!");
 }
